@@ -4,7 +4,7 @@
 def add_matrices2D(mat1, mat2):
     """a function that adds two matrices element-wise"""
     add = []
-    if len(mat1) != len(mat2):
+    if len(mat1) != len(mat2) or len(mat1[0]) != len(mat2[0]):
         return None
     for i in range(len(mat1)):
         add.append(list())
