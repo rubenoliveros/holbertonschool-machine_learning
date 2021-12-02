@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-'''2. Size Me Please'''
+'''Size Me Please'''
 
 
 def matrix_shape(matrix):
-    """Calculates The Matrix's Shape"""
+    """a function that calculates the shape of a matrix"""
     result = []
     while type(matrix) is list:
         result.append(len(matrix))
