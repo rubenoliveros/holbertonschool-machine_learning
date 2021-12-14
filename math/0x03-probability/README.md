@@ -1,0 +1,1 @@
+- poisson.py 0-main.py 1-main.py 2-main.py 3-main.py exponential.py 4-main.py 5-main.py 6-main.py normal.py 7-main.py 8-main.py 9-main.py 10-main.py binomial.py 11-main.py 12-main.py
