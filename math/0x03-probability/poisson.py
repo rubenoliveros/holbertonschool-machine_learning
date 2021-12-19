@@ -37,7 +37,6 @@ class Poisson():
 
     def cdf(self, k):
         """Calculates the value of the CDF for a given number of successes"""
-        e = 2.7182818285
         k = int(k)
         if k < 0:
             return 0
