@@ -6,10 +6,11 @@ class Poisson():
     """a class that represents a poisson distribution"""
     def __init__(self, data=None, lambtha=1.):
         """Constructor for class Poison"""
-        self.lambtha = float(lambtha)
         if data is None:
             if lambtha <= 0:
                 raise ValueError("lambtha must be a positive value")
+            else:
+                self.lambtha = float(lambtha)
         else:
             if isinstance(data, list):
                 if len(data) < 1:
