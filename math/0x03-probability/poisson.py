@@ -11,6 +11,7 @@ class Poisson():
                 raise ValueError("lambtha must be a positive value")
             else:
                 self.lambtha = float(lambtha)
+                self.lambtha = float(lambtha)
         else:
             if isinstance(data, list):
                 if len(data) < 1:
