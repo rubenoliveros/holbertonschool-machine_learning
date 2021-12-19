@@ -4,7 +4,6 @@
 
 class Poisson():
     """a class that represents a poisson distribution"""
-
     def __init__(self, data=None, lambtha=1.):
         """Constructor for class Poison"""
         self.lambtha = float(lambtha)
