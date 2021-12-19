@@ -34,31 +34,3 @@ class Poisson():
 
             pmf = e ** -self.lambtha * self.lambtha ** k / k_factorial
             return pmf
-
-#def pmf(self, k):
-#    """Calculates the value of the PMF for a given number of successes"""
-#        if k < 0:
-#            return 0
-#
-#        k = int(k)
-#        fact = 1
-#        for i in range(1, k + 1):
-#            fact = fact * i
-#
-#        pmf = ((self.e ** (- self.lambtha)) * (self.lambtha ** k)) / fact
-#        return pmf
-#
-#    def pmf(self, k):
-#        """Calculates the value of the PMF for a given number of “successes”"""
-#        k = int(k)
-#
-#        if k < 0:
-#            return 0
-#
-#        # Multiply elements one by one
-#        factorial = 1
-#        for x in range(1, k + 1):
-#            factorial *= x
-#
-#        return ((2.7182818285 ** (- self.lambtha)) *
-#                (self.lambtha ** k)) / factorial
