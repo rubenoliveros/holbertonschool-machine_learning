@@ -2,11 +2,11 @@
 """4. Exponential PDF"""
 
 
-e = 2.7182818285
 class Exponential():
     """a class that represents an exponential distribution"""
     def __init__(self, data=None, lambtha=1.):
         """Constructor for class Exponential"""
+        e = 2.7182818285
         if data is None:
             if lambtha <= 0:
                 raise ValueError("lambtha must be a positive value")
