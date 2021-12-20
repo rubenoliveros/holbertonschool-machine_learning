@@ -28,5 +28,4 @@ class Exponential():
         if k < 0:
             return 0
         else:
-            pdf = self.lambtha * (e ** (-self.lambtha * k))
-            return pdf
+            return self.lambtha * (e ** (-self.lambtha * k))
