@@ -30,3 +30,23 @@ class Binomial():
 
             else:
                 raise TypeError("data must be a list")
+
+    def pmf(self, k):
+        """Calculates the value of the PMF for a given number of successes"""
+        if k < 0:
+            return 0
+        k = int(k)
+
+        factorial_k = 1
+        factorial_n = 1
+        factorial_n_k = 1
+
+        for x in range(1, k + 1):
+            factorial_k *= x
+        for x in range(1, self.n + 1):
+            factorial_n *= x
+        for x in range(1, self.n - k + 1):
+            factorial_n_k *= x
+        pmf = (factorial_n / (factorial_k * factorial_n_k)) * \
+            self.p ** k * (1 - self.p) ** (self.n - k)
+        return pmf
