@@ -40,3 +40,11 @@ class Normal():
         constant = 1 / (self.stddev * (2 * pi) ** 0.5)
         exponent = e ** -(((x - self.mean) ** 2) / (2 * self.stddev ** 2))
         return constant * exponent
+
+    def cdf(self, x):
+        """Calculates the value of the CDF for a given x-value"""
+        b = (x - self.mean) / (self.stddev * (2 ** 0.5))
+        erf = (2 / (pi ** 0.5)) * \
+              (b - (b ** 3) / 3 + (b ** 5) / 10 - (b ** 7) / 42 +
+               (b ** 9) / 216)
+        return 0.5 * (1 + erf)
