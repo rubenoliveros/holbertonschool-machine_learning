@@ -50,3 +50,13 @@ class Binomial():
         pmf = (factorial_n / (factorial_k * factorial_n_k)) * \
             self.p ** k * (1 - self.p) ** (self.n - k)
         return pmf
+
+    def cdf(self, k):
+        """Calculates the value of the CDF for a given number of successes"""
+        if k < 0:
+            return 0
+        k = int(k)
+        cdf = 0
+        for x in range(k + 1):
+            cdf += self.pmf(x)
+        return cdf
