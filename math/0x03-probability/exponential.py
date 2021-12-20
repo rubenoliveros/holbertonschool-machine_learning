@@ -21,19 +21,19 @@ class Exponential():
             else:
                 raise TypeError("data must be a list")
 
-    def pdf(self, k):
+    def pdf(self, x):
         """Calculates the value of the PDF for a given time period"""
         e = 2.7182818285
-        k = int(k)
+        k = int(x)
         if k < 0:
             return 0
         else:
             return self.lambtha * (e ** (-self.lambtha * k))
 
-    def cdf(self, k):
+    def cdf(self, x):
         """ Calculates the value of the CDF for a given time period"""
         e = 2.7182818285
-        k = int(k)
+        k = int(x)
         if k < 0:
             return 0
         cdf = -e ** (-self.lambtha * k) + 1
