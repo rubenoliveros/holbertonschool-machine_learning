@@ -2,6 +2,8 @@
 """4. Exponential PDF"""
 
 
+e = 2.7182818285
+
 class Exponential():
     """a class that represents an exponential distribution"""
     def __init__(self, data=None, lambtha=1.):
@@ -23,7 +25,6 @@ class Exponential():
 
     def pdf(self, x):
         """Calculates the value of the PDF for a given time period"""
-        e = 2.7182818285
         k = int(x)
         if k < 0:
             return 0
@@ -32,7 +33,6 @@ class Exponential():
 
     def cdf(self, x):
         """ Calculates the value of the CDF for a given time period"""
-        e = 2.7182818285
         k = int(x)
         if k < 0:
             return 0
