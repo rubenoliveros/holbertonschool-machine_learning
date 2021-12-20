@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """6. Initialize Normal"""
 
+e = 2.7182818285
+pi = 3.1415926536
+
 
 class Normal():
     """a class Normal that represents a normal distribution"""
@@ -23,3 +26,11 @@ class Normal():
 
             else:
                 raise TypeError("data must be a list")
+
+    def z_score(self, x):
+        """Calculates the z-score of a given x-value"""
+        return (x - self.mean) / self.stddev
+
+    def x_value(self, z):
+        """Calculates the x-value of a given z-score"""
+        return z * self.stddev + self.mean
