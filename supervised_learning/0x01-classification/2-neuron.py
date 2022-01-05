@@ -15,6 +15,12 @@ class Neuron:
         self.__b = 0
         self.__A = 0
 
+    def forward_prop(self, X):
+        """Calculates the forward propagation of the neuron"""
+        Z = np.matmul(self.__W, X) + self.__b
+        self.__A = 1 / (1 + np.exp(-Z))
+        return self.__A
+
     @property
     def W(self):
         """Function for the weights vector for the neuron"""
@@ -28,10 +34,4 @@ class Neuron:
     @property
     def A(self):
         """Function for the activated output of the neuron (prediction)"""
-        return self.__A
-
-    def forward_prop(self, X):
-        """Calculates the forward propagation of the neuron"""
-        Z = np.matmul(self.__W, X) + self.__b
-        self.__A = 1 / (1 + np.exp(-Z))
         return self.__A
