@@ -2,6 +2,7 @@
 """7. Evaluate"""
 import tensorflow.compat.v1 as tf
 
+
 def evaluate(X, Y, save_path):
     """A function that evaluates the output of a neural network"""
     with tf.Session() as trainer:
