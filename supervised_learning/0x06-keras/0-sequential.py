@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """0. Sequential"""
 import tensorflow.keras as k
