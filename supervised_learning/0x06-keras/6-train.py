@@ -13,7 +13,10 @@ def train_model(network,
                 patience=0,
                 verbose=True,
                 shuffle=False):
-    """Updates the function 5-train.py to also train the model using early stopping"""
+    """
+    Updates the function 5-train.py to also train 
+    the model using early stopping
+    """
     es = None
     if validation_data is not None and early_stopping:
         es = [k.callbacks.EarlyStopping(monitor='val_loss', patience=patience)]
