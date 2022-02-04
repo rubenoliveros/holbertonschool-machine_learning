@@ -21,10 +21,10 @@ def pool_backward(dA, A_prev, kernel_shape, stride=(1, 1), mode='max'):
                 for w in range(w_new):
                     i = h * sh
                     j = w * sw
-                    if mode is 'max':
+                    if mode == 'max':
                         val = A_prev[a, i:i + kh, j:j + kw, k]
                         tmp = np.where(val == np.max(val), 1, 0)
-                    elif mode is 'avg':
+                    elif mode == 'avg':
                         tmp = np.ones((kh, kw))
                         tmp /= (kh * kw)
                     conv[a, i:i + kh, j:j + kw, k] += (tmp * dA[a, h, w, k])
