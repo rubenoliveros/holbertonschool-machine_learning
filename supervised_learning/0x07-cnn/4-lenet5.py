@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """4. LeNet-5 (Tensorflow 1)"""
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 
 def lenet5(x, y):
@@ -8,7 +8,7 @@ def lenet5(x, y):
     A function that builds a modified version of
     the LeNet-5 architecture using tensorflow
     """
-    init = tf.contrib.layers.variance_scaling_initializer()
+    init = tf.layers.variance_scaling_initializer()
 
     conv_1 = tf.layers.Conv2D(filters=6, kernel_size=5,
                               padding='same', activation=tf.nn.relu,
