@@ -14,10 +14,10 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
     sh, sw = stride
     tmp = A_prev
 
-    if padding is 'same':
+    if padding == 'same':
         ph = int((((h_prev - 1) * sh + kh - h_prev) // 2) + 1)
         pw = int((((w_prev - 1) * sw + kw - w_prev) // 2) + 1)
-    if padding is 'valid':
+    if padding == 'valid':
         ph = 0
         pw = 0
 
@@ -37,7 +37,7 @@ def conv_backward(dZ, A_prev, W, b, padding="same", stride=(1, 1)):
                     dW[:, :, :, c] += tmp_pad[i, h * sh:h * sh +
                                               kh, w * sw:w * sw + kw, :] * \
                         dZ[i, h, w, c]
-    if padding is 'same':
+    if padding == 'same':
         d_tmp = d_tmp[:, ph:-ph, pw:-pw, :]
     else:
         d_tmp = d_tmp
