@@ -42,7 +42,7 @@ def minor(matrix):
         raise TypeError("matrix must be a list of lists")
 
     if matrix == [[]]:
-        raise ValueError("matrix must be a square matrix")
+        return 1
     
     for i in range(len(matrix)):
         if len(matrix) != len(matrix[i]):
@@ -54,7 +54,6 @@ def minor(matrix):
         return [[1]]
     
     minor = []
-    
     for i in range(len(matrix)):
         inner = []
         for j in range(len(matrix)):
