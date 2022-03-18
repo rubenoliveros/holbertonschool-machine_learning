@@ -51,7 +51,7 @@ def minor(matrix):
             raise TypeError("matrix must be a list of lists")
     
     if len(matrix) == 1:
-        return 1
+        return [[1]]
     
     minor = []
     for i in range(len(matrix)):
