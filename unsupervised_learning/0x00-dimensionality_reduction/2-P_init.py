@@ -4,6 +4,7 @@
 
 import numpy as np
 
+
 def P_init(X, perplexity):
     """
     A function that initializes all variables
