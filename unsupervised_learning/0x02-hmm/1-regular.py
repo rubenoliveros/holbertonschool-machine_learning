@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """1. Regular Chains"""
 import numpy as np
 
