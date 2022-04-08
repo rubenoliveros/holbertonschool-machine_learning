@@ -13,7 +13,7 @@ def absorbing(P):
                      state j
            - n is the number of states in the markov chain
     Returns: True if it is absorbing, or False on failure
-    """    
+    """
     if not isinstance(P, np.ndarray)\
             or len(P.shape) != 2\
             or P.shape[0] != P.shape[1]\
