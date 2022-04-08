@@ -14,21 +14,56 @@ def absorbing(P):
            - n is the number of states in the markov chain
     Returns: True if it is absorbing, or False on failure
     """
-    if not isinstance(P, np.ndarray)\
-            or len(P.shape) != 2\
-            or P.shape[0] != P.shape[1]\
-            or P.shape[0] < 1:
+    if (type(P) is not np.ndarray or len(P.shape) != 2):
         return None
 
-    if np.all(np.diag(P) == 1):
-        return True
+    n = P.shape[0]
+    diag = np.diag(P)
 
-    if P[0, 0] != 1:
+    if (not np.any(diag == 1)):
         return False
 
-    P = P[1:, 1:]
-
-    if np.all(np.count_nonzero(P, axis=0) > 2):
+    if (P == np.eye(n)).all():
         return True
-    else:
+
+    abs_s_idxs = np.where(diag == 1)[0]
+    n_abss = 0
+
+    for idx in abs_s_idxs:
+
+        while(P[n_abss, n_abss] == 1):
+            n_abss += 1
+
+        if(idx > n_abss):
+
+            permutation = []
+            for i in range(n):
+                if (i == n_abss):
+                    permutation.append(idx)
+                    permutation.append(i)
+                elif (i != idx):
+                    permutation.append(i)
+
+            P[:] = P[permutation, :]
+            P[:] = P[:, permutation]
+
+            n_abss += 1
+
+    n_abss = len(abs_s_idxs)
+    R = P[n_abss:, :n_abss]
+    Q = P[n_abss:, n_abss:]
+
+    QminusI = np.eye(n - n_abss) - Q
+
+    if np.linalg.det(QminusI) == 0:
         return False
+
+    F = np.linalg.inv(QminusI)
+
+    FR = np.matmul(F, R)
+
+    for i in range(n_abss):
+        if (not np.allclose(FR.sum(axis=1), np.ones((FR.shape[0], )))):
+            return False
+
+    return True
