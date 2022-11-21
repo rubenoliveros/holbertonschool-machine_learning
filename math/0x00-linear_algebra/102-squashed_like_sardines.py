@@ -2,54 +2,37 @@
 "17. Squashed Like Sardines"
 
 
-def shape(matrix):
-    """ return the shape of a matrix
-    Args:
-        matrix: Given matrix
-    Return:
-        the shape of the matrix: ndim
-    """
-    if type(matrix[0]) != list:
-        return [len(matrix)]
-    else:
-        return [len(matrix)] + shape(matrix[0])
-
-
-def rec_matrix(mat1, mat2, rank, axis=0):
-    """ recursively operate a concatenation of a n matrix
-        Args:
-            mat1, mat2: Given matrix
-            axis: Given axis
-            rank: Given rank to check if it is in the same
-            axis mat1 and mat2
-        Return:
-            the concatenation of mat1, mat2 iterating recursively: ndim
-        """
-    new_mat = []
-    if (type(mat1[0]) and type(mat2[0])) and rank == axis:
-        new_mat = [y for x in [mat1, mat2] for y in x]
-        return new_mat
-    else:
-        for x in range(len(mat1)):
-            if type(mat1[x]) == list:
-                new_mat = [sum(x) for x in zip(rec_matrix(mat1[x],
-                                                          mat2[x],
-                                                          rank + 1,
-                                                          axis))]
-            return new_mat
-
-
 def cat_matrices(mat1, mat2, axis=0):
-    """ concatenate n dimesnional matrices with the same shape
+    """Concatenates two matrices along a specific axis
     Args:
-        mat1, mat2: Given matrix
-        axis: given axis
-    Return:
-        new_mat: Recursively concatenation of mat1 and mat2
+        mat1 (list): matrix of int/floats
+        mat2 list): matrix of int/floats
+        axis (int, optional): axis to perform concatenation. Defaults to 0.
+    Returns:
+        list: concatenated matrix. None if it can't be done
     """
-    if shape(mat1) != shape(mat2):
-        return None
-    else:
-        rank = 0
-        new_mat = rec_matrix(mat1, mat2, rank, axis)
-        return new_mat
+    # check if columns are equals
+    if not axis and matrix_shape(mat1) == matrix_shape(mat2):
+        return mat1 + mat2
+    # check if rows are equals
+    if axis == 1 and len(mat1) == len(mat2):
+        return [mat1[row] + mat2[row] for row in range(len(mat1))]
+
+    if axis == 3 and len(mat1[0]) == len(mat2[0]):
+        return mat1 + mat2
+
+
+def matrix_shape(matrix):
+    """Calculates the shape of a matrix with the same dimension
+    Args:
+        matrix (list): matrix to be evaluated
+    Returns:
+        shape_matrix (list): list of integers desribing the matrix shape
+    """
+    # base case
+    if type(matrix) is int:
+        return []
+
+    shape_matrix = matrix_shape(matrix[0])
+    shape_matrix.insert(0, len(matrix))
+    return shape_matrix
