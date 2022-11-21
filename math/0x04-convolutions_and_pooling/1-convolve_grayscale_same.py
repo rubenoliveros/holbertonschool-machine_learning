@@ -4,26 +4,21 @@ import numpy as np
 
 
 def convolve_grayscale_same(images, kernel):
-    """A function that performs a same convolution on grayscale images"""
-    m, h, w = images.shape[0], images.shape[1], images.shape[2]
-    kh, kw = kernel.shape[0], kernel.shape[1]
-    y_h = h - kh + 1
-    y_w = w - kw + 1
-    pad_h = int((kh - 1) / 2)
-    pad_w = int((kw - 1) / 2)
-    if kh % 2 == 0:
-        pad_h += 1
-    if kw % 2 == 0:
-        pad_w += 1
-
-    image = np.pad(images, pad_width=((0, 0), (pad_h, pad_h), (pad_w, pad_w)),
-                   mode='constant')
-
-    c_i = np.zeros((m, y_h, y_w))
-
-    for j in range(y_w):
-        for i in range(y_h):
-            c_i[:, i, j] = (kernel *
-                            images[:, i: i + kh, j: j + kw]).sum(axis=(1, 2))
-
-    return c_i
+    """performs a same convolution on grayscale images"""
+    m, h, w = images.shape
+    kh, kw = kernel.shape
+    out_images = np.zeros((m, h, w))
+    if kh % 2:
+        h_pad = (kh - 1) // 2
+    else:
+        h_pad = kh // 2
+    if kw % 2:
+        w_pad = (kw - 1) // 2
+    else:
+        w_pad = kw // 2
+    img = np.pad(images, ((0, 0), (h_pad, h_pad), (w_pad, w_pad)), 'constant')
+    for i in range(h):
+        for j in range(w):
+            out_images[:, i, j] = np.sum(
+                kernel * img[:, i: i + kh, j: j + kw], axis=(1, 2))
+    return out_images
