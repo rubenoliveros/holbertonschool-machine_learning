@@ -1,30 +1,33 @@
 #!/usr/bin/env python3
 "6. Early Stopping"
-import tensorflow.keras as k
+import tensorflow.keras as K
 
 
-def train_model(network,
-                data,
-                labels,
-                batch_size,
-                epochs,
-                validation_data=None,
-                early_stopping=False,
-                patience=0,
-                verbose=True,
-                shuffle=False):
-    """
-    Updates the function 5-train.py to also train 
-    the model using early stopping
-    """
-    es = None
-    if validation_data is not None and early_stopping:
-        es = [k.callbacks.EarlyStopping(monitor='val_loss', patience=patience)]
-    return network.fit(data,
-                       labels,
-                       batch_size=batch_size,
-                       epochs=epochs,
-                       validation_data=validation_data,
-                       callbacks=es,
-                       verbose=verbose,
-                       shuffle=shuffle)
+def train_model(network, data, labels, batch_size, epochs,
+                validation_data=None, early_stopping=False,
+                patience=0, verbose=True, shuffle=False):
+    """Function that trains the model
+    network: is the model to train
+    data: is a numpy.ndarray of shape (m, nx) containing the input data
+    labels: is a one-hot numpy.ndarray of shape (m, classes) containing the
+    labels of data
+    batch_size: is the size of the batch used for mini-batch gradient descent
+    epochs: is the number of passes through data for mini-batch gradient
+    descent
+    verbose: is a boolean that determines if output should be printed during
+    training
+    shuffle: is a boolean that determines whether to shuffle the batches every
+    epoch. Normally, it is a good idea to shuffle, but for reproducibility, we
+    have chosen to set the default to False.
+    Returns: the History object generated after training the model"""
+    if validation_data:
+        if early_stopping:
+            callback = K.callbacks.EarlyStopping(
+                monitor='val_loss', patience=patience)
+        history = network.fit(
+            data, labels, batch_size, epochs, verbose, shuffle=shuffle,
+            validation_data=(validation_data), callbacks=[callback])
+    else:
+        history = network.fit(
+            data, labels, batch_size, epochs, verbose, shuffle=shuffle)
+    return history
